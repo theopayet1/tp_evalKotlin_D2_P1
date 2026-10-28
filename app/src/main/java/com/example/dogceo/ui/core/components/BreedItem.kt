@@ -1,9 +1,3 @@
-/*
- * BreedItem.kt
- * Couche : UI · Composant partagé
- * Rôle : affiche une race et ses sous-races sur une ligne.
- * TODO: à réécrire
- */
 package com.example.dogceo.ui.core.components
 
 import androidx.compose.foundation.layout.Column
@@ -19,12 +13,10 @@ import com.example.dogceo.domain.model.Breed
 import com.example.dogceo.ui.core.theme.DogCeoTheme
 
 /**
- * Une ligne de la liste : le nom de la race, et ses sous-races en dessous s'il y en a.
+ * Une ligne de la liste : le nom de la race et, en dessous sous-races.
  *
- * TODO: à réécrire
- *
- * @param breed la race à afficher.
- * @param modifier pour placer la ligne depuis l'écran parent.
+ * @param breed race à afficher.
+ * @param modifier modificateur appliqué à la ligne.
  */
 @Composable
 fun BreedItem(
@@ -37,8 +29,7 @@ fun BreedItem(
             .padding(horizontal = 16.dp, vertical = 12.dp),
     ) {
         Text(
-            // L'API renvoie tout en minuscules : on met juste la première lettre en majuscule
-            // TODO: à réécrire
+            // L'API renvoie les noms en minuscules
             text = breed.name.replaceFirstChar(Char::uppercase),
             style = MaterialTheme.typography.titleMedium,
         )

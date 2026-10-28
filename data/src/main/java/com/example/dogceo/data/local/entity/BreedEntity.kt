@@ -1,21 +1,13 @@
-/*
- * BreedEntity.kt
- * Couche : Data · Base locale
- * Rôle : une ligne de la table des races.
- * TODO: à réécrire
- */
 package com.example.dogceo.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 /**
- * Une ligne de la table `breeds` : la copie locale d'une race, lisible sans réseau.
+ * Une race dans la table `breeds`, transformée en Breed par [com.example.dogceo.data.mapper.toDomain].
  *
- * TODO: à réécrire
- *
- * @property name nom de la race, clé primaire : un nouveau téléchargement remplace la ligne au lieu de la dupliquer.
- * @property subBreeds ses sous-races, rangées en texte grâce à [com.example.dogceo.data.local.BreedConverters].
+ * @property name clé primaire, un nouveau téléchargement remplace la ligne au lieu d'en ajouter une.
+ * @property subBreeds rangées en texte par [com.example.dogceo.data.local.BreedConverters].
  */
 @Entity(tableName = "breeds")
 data class BreedEntity(

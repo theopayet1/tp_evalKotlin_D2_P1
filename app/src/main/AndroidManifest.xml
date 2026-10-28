@@ -2,20 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Internet : télécharger la liste des races depuis l'API Dog CEO.
-         Permission normale, accordée à l'installation, sans popup.
-         TODO: à réécrire -->
+    <!-- Internet : pour accéder à l'API Dog CEO
+         Permission normale (sans popup)
+         -->
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <!-- Localisation : afficher la position de l'utilisateur au clic sur « Me localiser ».
-         Permissions dangereuses : demandées à l'exécution, par une popup.
-         FINE et COARSE ensemble, comme l'exige Android 12+ : l'utilisateur choisit précise ou approximative.
-         TODO: à réécrire -->
+    <!-- Localisation : afficher la position de l'utilisateur
+         Permissions dangereuses (popup obligatoire ).
+         FINE(précise) et COARSE(approximative) obligation depuis Android 12+.
+         -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <!-- L'app : DogCeoApplication démarre Koin avant le premier écran.
-         TODO: à réécrire -->
+    <!-- L'app DogCeoApplication démarre Koin avant le premier écran -->
     <application
         android:name=".DogCeoApplication"
         android:allowBackup="true"
@@ -26,9 +25,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DogCeo">
-        <!-- Écran unique, lancé depuis l'icône (MAIN + LAUNCHER) : affiche la liste des races.
-             exported="true" car c'est le lanceur d'Android qui l'ouvre.
-             TODO: à réécrire -->
+        <!-- Écran unique, lancé depuis l'icône (MAIN + LAUNCHER) affiche la liste des races.
+             exported="true" car lanceur Android qui l'ouvre.-->
         <activity
             android:name=".MainActivity"
             android:exported="true"

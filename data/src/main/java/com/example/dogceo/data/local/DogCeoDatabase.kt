@@ -1,9 +1,3 @@
-/*
- * DogCeoDatabase.kt
- * Couche : Data · Base locale
- * Rôle : base Room de l'app et sa fonction de création.
- * TODO: à réécrire
- */
 package com.example.dogceo.data.local
 
 import android.content.Context
@@ -14,30 +8,32 @@ import androidx.room.TypeConverters
 import com.example.dogceo.data.local.dao.BreedDao
 import com.example.dogceo.data.local.entity.BreedEntity
 
+/** Nom du fichier bd du téléphone*/
 private const val DATABASE_NAME = "dogceo.db"
 
 /**
- * Base locale unique de l'app : garde les races sur le téléphone pour un affichage hors ligne.
+ * Base locale de l'app garde les races.
  *
- * TODO: à réécrire
+ * @see createDogCeoDatabase
  */
 @Database(entities = [BreedEntity::class], version = 1, exportSchema = false)
 @TypeConverters(BreedConverters::class)
 abstract class DogCeoDatabase : RoomDatabase() {
 
-    /** Donne accès à la table des races. TODO: à réécrire */
+    /**
+     * Donne accès à la table des races.
+     *
+     * @return le [BreedDao], dont Room génère le code.
+     */
     abstract fun breedDao(): BreedDao
 }
 
 /**
- * Construit la base [DogCeoDatabase] à partir de n'importe quel [Context].
+ * Crée la base Room de l'app.
  *
- * TODO: à réécrire
- *
- * @receiver le Context fourni par Koin (`androidContext()`).
- * @return la base prête à l'emploi, à créer une seule fois (`single`).
+ * @receiver contexte d'où on prend l'`applicationContext`.
+ * @return la base, à créer une seule fois (`single` dans Koin).
  */
 fun Context.createDogCeoDatabase(): DogCeoDatabase =
-    // applicationContext vit aussi longtemps que l'app : la base ne retient pas un écran fermé en mémoire
-    // TODO: à réécrire
+    // applicationContext plutôt que celui d'un écran car la base ne garde pas une Activity fermée en mémoire logique
     Room.databaseBuilder(applicationContext, DogCeoDatabase::class.java, DATABASE_NAME).build()

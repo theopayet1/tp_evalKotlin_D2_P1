@@ -1,36 +1,27 @@
-/*
- * BreedRepository.kt
- * Couche : Domain · Contrat
- * Rôle : décrit l'accès aux races, sans savoir d'où elles viennent.
- * TODO: à réécrire
- */
 package com.example.dogceo.domain.repository
 
 import com.example.dogceo.domain.model.Breed
 import kotlinx.coroutines.flow.Flow
 
 /**
- * Contrat d'accès aux races : l'app lit toujours la copie locale, et la rafraîchit depuis l'API à la demande.
- *
- * TODO: à réécrire
+ * Accès aux races, en offline-first :
+ * - [observeBreeds] lit toujours le cache local ;
+ * - [refreshBreeds] met ce cache à jour depuis l'API.
  */
 interface BreedRepository {
 
     /**
-     * Suit la liste des races enregistrées sur le téléphone.
+     * Suit les races en cache.
      *
-     * TODO: à réécrire
-     *
-     * @return un [Flow] qui émet la liste à chaque changement, même sans réseau.
+     * @return un [Flow] qui émet la liste à chaque changement.
      */
     fun observeBreeds(): Flow<List<Breed>>
 
     /**
-     * Télécharge les races depuis l'API et remplace la copie locale.
+     * Télécharge les races et met à jour le cache.
+     * Ne lève pas d'exception : l'erreur est dans le [Result].
      *
-     * TODO: à réécrire
-     *
-     * @return [Result.success] si la mise à jour a marché, [Result.failure] avec l'erreur sinon.
+     * @return [Result.success] si le cache est à jour, [Result.failure] si l'appel a échoué.
      */
     suspend fun refreshBreeds(): Result<Unit>
 }

@@ -1,9 +1,3 @@
-/*
- * BreedApiService.kt
- * Couche : Data · Source distante
- * Rôle : appelle l'API Dog CEO.
- * TODO: à réécrire
- */
 package com.example.dogceo.data.remote
 
 import com.example.dogceo.data.remote.dto.BreedListDto
@@ -12,11 +6,9 @@ import io.ktor.client.call.body
 import io.ktor.client.request.get
 
 /**
- * Source distante des races : fait les appels HTTP vers l'API Dog CEO et renvoie des DTO.
+ * Appelle l'API Dog CEO.
  *
- * TODO: à réécrire
- *
- * @property httpClient le client créé par [createDogCeoHttpClient], fourni par Koin.
+ * @property httpClient client créé par [createDogCeoHttpClient].
  */
 class BreedApiService(
     private val httpClient: HttpClient,
@@ -25,10 +17,9 @@ class BreedApiService(
     /**
      * Récupère toutes les races et leurs sous-races.
      *
-     * TODO: à réécrire
-     *
-     * @return la réponse brute de l'API, à convertir par le mapper.
-     * @throws Exception si le réseau est coupé ou si l'API répond en erreur : c'est le repository qui la gère.
+     * @return la réponse brute de l'API.
+     * @throws io.ktor.client.plugins.ResponseException si l'API répond en 4xx ou 5xx.
+     * @throws java.io.IOException si le réseau est coupé.
      */
     suspend fun getAllBreeds(): BreedListDto =
         httpClient.get("breeds/list/all").body()

@@ -1,9 +1,3 @@
-/*
- * BreedListViewModel.kt
- * Couche : UI · Écran liste des races
- * Rôle : reçoit les actions de l'écran et publie l'état à afficher.
- * TODO: à réécrire
- */
 package com.example.dogceo.ui.screens.breedList
 
 import androidx.lifecycle.ViewModel
@@ -20,13 +14,11 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
- * Cerveau de l'écran des races : reçoit les [BreedListAction] et publie un [BreedListUiState].
+ * Gère l'écran des races : reçoit les [BreedListAction] et donne un [BreedListUiState].
  *
- * TODO: à réécrire
- *
- * @property breedRepository contrat du Domain : le ViewModel ne sait pas que derrière il y a Room et Ktor.
- * @property soundManager contrat du Domain pour le son, libéré dans [onCleared].
- * @property gpsManager contrat du Domain pour la position, arrêté dès que l'écran n'est plus visible.
+ * @property breedRepository donne les races (cache + API).
+ * @property soundManager joue le son des boutons.
+ * @property gpsManager donne la position, coupé quand l'écran est caché.
  */
 class BreedListViewModel(
     private val breedRepository: BreedRepository,
@@ -36,27 +28,23 @@ class BreedListViewModel(
 
     private val _uiState = MutableStateFlow(BreedListUiState())
 
-    // Le GPS ne reprend au retour sur l'écran que si l'utilisateur a déjà accepté la localisation
-    // TODO: à réécrire
+    // Le GPS repart au retour sur l'écran seulement si la permission est accordée
     private var isLocationAllowed = false
 
-    /** L'état lu par l'écran. En lecture seule : seul le ViewModel le modifie. TODO: à réécrire */
+    /** État lu par l'écran, seul le ViewModel le modifie. */
     val uiState: StateFlow<BreedListUiState> = _uiState.asStateFlow()
 
     init {
         observeBreeds()
         observePosition()
-        // Premier téléchargement au démarrage, sans son : le son est réservé au clic
-        // TODO: à réécrire
+        // Premier chargement sans son, le son c'est seulement au clic
         refreshBreeds()
     }
 
     /**
-     * Seule porte d'entrée de l'écran : le `when` oblige à traiter chaque action.
+     * Traite une action de l'écran. Pas de `else` dans le `when` : chaque nouvelle [BreedListAction] doit être gérée.
      *
-     * TODO: à réécrire
-     *
-     * @param action ce que l'utilisateur vient de faire.
+     * @param action action de l'utilisateur.
      */
     fun onAction(action: BreedListAction) {
         when (action) {
@@ -73,24 +61,32 @@ class BreedListViewModel(
         }
     }
 
+    /**
+     * Garde la réponse de la popup et lance le GPS si c'est accepté.
+     *
+     * @param granted `true` si une localisation est accordée.
+     */
     private fun onLocationPermissionResult(granted: Boolean) {
         isLocationAllowed = granted
         _uiState.update { it.copy(isLocationDenied = !granted) }
         if (granted) gpsManager.start()
     }
 
+    /** Met chaque nouvelle position dans l'état. */
     private fun observePosition() {
         gpsManager.position
             .onEach { position -> _uiState.update { it.copy(position = position) } }
             .launchIn(viewModelScope)
     }
 
+    /** Met les races du cache dans l'état à chaque changement. */
     private fun observeBreeds() {
         breedRepository.observeBreeds()
             .onEach { breeds -> _uiState.update { it.copy(breeds = breeds) } }
             .launchIn(viewModelScope)
     }
 
+    /** Retélécharge les races et met à jour [BreedListUiState.isLoading] et [BreedListUiState.hasError]. */
     private fun refreshBreeds() {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true, hasError = false) }
@@ -100,9 +96,7 @@ class BreedListViewModel(
     }
 
     override fun onCleared() {
-        // Appelé une seule fois, quand l'écran est quitté pour de bon (pas lors d'une rotation) :
-        // c'est le bon moment pour libérer la mémoire du SoundPool
-        // TODO: à réécrire
+        // Appelé quand on quitte l'écran pour de bon (pas à la rotation), on libère le son et le GPS
         soundManager.release()
         gpsManager.stop()
     }

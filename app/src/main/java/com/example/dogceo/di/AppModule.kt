@@ -1,9 +1,3 @@
-/*
- * AppModule.kt
- * Couche : DI · Koin
- * Rôle : branche les implémentations de Data sur les contrats du Domain.
- * TODO: à réécrire
- */
 package com.example.dogceo.di
 
 import com.example.dogceo.data.local.DogCeoDatabase
@@ -24,9 +18,9 @@ import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
 /**
- * Câblage Koin de toute l'app : c'est le seul endroit qui connaît à la fois le Domain et la Data.
+ * Module Koin de l'app : relie chaque contrat à son implémentation dans Data.
  *
- * TODO: à réécrire
+ * @see com.example.dogceo.DogCeoApplication
  */
 val appModule = module {
 
@@ -41,14 +35,10 @@ val appModule = module {
     //endregion
 
     //region Repository
-    // Le ViewModel demande l'interface BreedRepository, Koin lui donne BreedRepositoryImpl
-    // TODO: à réécrire
     singleOf(::BreedRepositoryImpl) { bind<BreedRepository>() }
     //endregion
 
     //region Managers
-    // factory : chaque ViewModel a son propre son, qu'il libère dans onCleared() sans couper celui des autres
-    // TODO: à réécrire
     factory<SoundManager> { SoundManagerImpl(androidContext()) }
     single<GpsManager> { GpsManagerImpl(androidContext()) }
     //endregion

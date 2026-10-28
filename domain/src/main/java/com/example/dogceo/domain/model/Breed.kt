@@ -1,18 +1,10 @@
-/*
- * Breed.kt
- * Couche : Domain · Modèle
- * Rôle : une race de chien telle que l'app la manipule.
- * TODO: à réécrire
- */
 package com.example.dogceo.domain.model
 
 /**
- * Une race de chien, telle que l'app la manipule.
+ * Une race de chien.
  *
- * TODO: à réécrire
- *
- * @property name nom de la race, en minuscules comme dans l'API (`"australian"`).
- * @property subBreeds ses sous-races (`["kelpie", "shepherd"]`), vide si la race n'en a pas.
+ * @property name nom en minuscules.
+ * @property subBreeds sous-races, liste vide s'il n'y en a pas.
  */
 data class Breed(
     val name: String,

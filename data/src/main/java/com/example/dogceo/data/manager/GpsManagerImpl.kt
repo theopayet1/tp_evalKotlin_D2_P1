@@ -1,9 +1,3 @@
-/*
- * GpsManagerImpl.kt
- * Couche : Data · Manager
- * Rôle : suit la position avec le LocationManager d'Android.
- * TODO: à réécrire
- */
 package com.example.dogceo.data.manager
 
 import android.Manifest
@@ -19,16 +13,17 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
+/** Temps minimum entre deux positions, en millisecondes. */
 private const val MIN_UPDATE_INTERVAL_MILLIS = 5_000L
+
+/** Distance minimum entre deux positions, en mètres. */
 private const val MIN_UPDATE_DISTANCE_METERS = 10f
 
 /**
- * Suit la position de l'utilisateur et la publie dans [position].
- * Le GPS vide la batterie : il ne tourne qu'entre [start] et [stop].
+ * [GpsManager] qui utilise le [LocationManager] d'Android.
  *
- * TODO: à réécrire
- *
- * @property context l'Application Context fourni par Koin, utilisé pour vérifier les permissions.
+ * @constructor récupère le [LocationManager], `null` si le téléphone n'a pas de localisation.
+ * @property context sert à vérifier les permissions.
  */
 class GpsManagerImpl(
     private val context: Context,
@@ -40,9 +35,15 @@ class GpsManagerImpl(
 
     override val position: StateFlow<Position?> = _position.asStateFlow()
 
+    /**
+     * Lance le suivi avec la meilleure source autorisée :
+     * - précise ([LocationManager.GPS_PROVIDER]) si `ACCESS_FINE_LOCATION` est accordée ;
+     * - approximative ([LocationManager.NETWORK_PROVIDER]) sinon.
+     *
+     * Ne fait rien si aucune n'est accordée.
+     */
     override fun start() {
-        // Le Manager vérifie lui-même la permission : appelé trop tôt ou après un refus, il ne plante pas
-        // TODO: à réécrire
+        // Sans permission, start() ne fait rien au lieu de planter
         val provider = when {
             context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==
                 PackageManager.PERMISSION_GRANTED -> LocationManager.GPS_PROVIDER
@@ -50,8 +51,7 @@ class GpsManagerImpl(
                 PackageManager.PERMISSION_GRANTED -> LocationManager.NETWORK_PROVIDER
             else -> return
         }
-        // Affiche tout de suite la dernière position connue, sans attendre le premier signal GPS
-        // TODO: à réécrire
+        // Montre tout de suite la dernière position connue, sans attendre le GPS
         locationManager?.getLastKnownLocation(provider)?.let(::onLocationChanged)
         locationManager?.requestLocationUpdates(
             provider,
@@ -66,9 +66,13 @@ class GpsManagerImpl(
         locationManager?.removeUpdates(this)
     }
 
+    /**
+     * Appelé par Android à chaque nouvelle position.
+     *
+     * @param location position reçue, transformée en [Position].
+     */
     override fun onLocationChanged(location: Location) {
-        // Mapping : l'objet Android Location ne sort pas de la couche Data
-        // TODO: à réécrire
+        // La Location d'Android reste dans Data, on la transforme en Position
         _position.value = Position(latitude = location.latitude, longitude = location.longitude)
     }
 }

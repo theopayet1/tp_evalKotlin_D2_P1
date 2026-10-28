@@ -1,9 +1,3 @@
-/*
- * ErrorBanner.kt
- * Couche : UI · Composant partagé
- * Rôle : bandeau d'erreur réutilisable avec un bouton fermer.
- * TODO: à réécrire
- */
 package com.example.dogceo.ui.core.components
 
 import androidx.compose.foundation.layout.Row
@@ -23,13 +17,11 @@ import com.example.dogceo.R
 import com.example.dogceo.ui.core.theme.DogCeoTheme
 
 /**
- * Bandeau d'erreur réutilisable, avec un bouton pour le fermer.
+ * Bandeau d'erreur avec un bouton « Fermer ».
  *
- * TODO: à réécrire
- *
- * @param message le texte à afficher, déjà traduit par l'appelant (`stringResource`).
- * @param onDismiss appelé au clic sur « Fermer » : c'est l'appelant qui décide de cacher le bandeau.
- * @param modifier pour placer le bandeau depuis l'écran parent.
+ * @param message texte déjà traduit.
+ * @param onDismiss appelé au clic sur « Fermer ».
+ * @param modifier modificateur appliqué au bandeau.
  */
 @Composable
 fun ErrorBanner(

@@ -1,9 +1,3 @@
-/*
- * SoundManagerImpl.kt
- * Couche : Data · Manager
- * Rôle : joue le son du bouton avec SoundPool.
- * TODO: à réécrire
- */
 package com.example.dogceo.data.manager
 
 import android.content.Context
@@ -13,12 +7,10 @@ import com.example.dogceo.data.R
 import com.example.dogceo.domain.manager.SoundManager
 
 /**
- * Joue les sons courts de l'app avec [SoundPool] : le fichier est chargé une fois en mémoire,
- * puis rejoué instantanément à chaque clic.
+ * [SoundManager] avec [SoundPool] : le son est chargé une fois, puis rejoué tout de suite.
  *
- * TODO: à réécrire
- *
- * @param context sert seulement à charger le fichier de `res/raw`, il n'est pas gardé.
+ * @constructor lance le chargement du son du clic.
+ * @param context sert juste à charger le fichier de `res/raw`, il n'est pas gardé.
  */
 class SoundManagerImpl(context: Context) : SoundManager {
 
@@ -26,16 +18,14 @@ class SoundManagerImpl(context: Context) : SoundManager {
         .setMaxStreams(1)
         .setAudioAttributes(
             AudioAttributes.Builder()
-                // Un son d'interface, pas de la musique : Android l'ajuste comme tel
-                // TODO: à réécrire
+                // Son d'interface : Android le gère comme un bip, pas comme de la musique
                 .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
                 .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
                 .build()
         )
         .build()
 
-    // load() est asynchrone : on retient quand le fichier est prêt pour ne pas jouer un son vide
-    // TODO: à réécrire
+    // load() est asynchrone, on attend la fin du chargement avant de jouer
     private var isLoaded = false
 
     private val clickSoundId: Int = soundPool.load(context, R.raw.sound_refresh_click, 1)

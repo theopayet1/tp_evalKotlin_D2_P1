@@ -1,9 +1,3 @@
-/*
- * SpinningTiger.kt
- * Couche : UI · Composant partagé
- * Rôle : easter egg, un gros tigre qui tourne par-dessus l'écran.
- * TODO: à réécrire
- */
 package com.example.dogceo.ui.core.components
 
 import androidx.compose.animation.core.LinearEasing
@@ -28,26 +22,24 @@ import androidx.compose.ui.unit.sp
 import com.example.dogceo.R
 import com.example.dogceo.ui.core.theme.DogCeoTheme
 
+/** Un tour complet, en degrés. */
 private const val FULL_TURN_DEGREES = 360f
+
+/** Temps d'un tour, en millisecondes. */
 private const val TURN_DURATION_MILLIS = 1_500
 
 /**
- * Easter egg : un tigre géant qui tourne sans fin au centre d'un fond assombri.
- * Un clic n'importe où le fait disparaître.
+ * Easter egg : un gros tigre qui tourne au milieu de l'écran, un clic le ferme.
  *
- * TODO: à réécrire
- *
- * @param onClose appelé au clic : c'est l'appelant qui cache le tigre.
- * @param modifier pour placer le calque depuis l'écran parent.
+ * @param onClose appelé quand on clique pour fermer.
+ * @param modifier modificateur du calque.
  */
 @Composable
 fun SpinningTiger(
     onClose: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    // Une transition infinie : Compose recalcule l'angle à chaque image, de 0 à 360°, puis recommence.
-    // Elle s'arrête toute seule quand le tigre quitte l'écran.
-    // TODO: à réécrire
+    // Tourne de 0 à 360° en boucle, et s'arrête tout seul quand le tigre disparaît
     val rotation by rememberInfiniteTransition(label = "tiger").animateFloat(
         initialValue = 0f,
         targetValue = FULL_TURN_DEGREES,

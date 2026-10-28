@@ -1,6 +1,3 @@
-// Module Data : implémente les contrats du Domain (API, base locale, managers).
-// TODO: à réécrire
-
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.serialization)
@@ -28,8 +25,7 @@ dependencies {
     implementation(project(":domain"))
     //endregion
 
-    // api : DogCeoDatabase et HttpClient sont construits dans app/di, app doit voir leurs types
-    // TODO: à réécrire
+    // DogCeoDatabase et HttpClient sont construits dans app/di, app doit voir leurs types
 
     //region Base locale (Room)
     api(libs.androidx.room.runtime)

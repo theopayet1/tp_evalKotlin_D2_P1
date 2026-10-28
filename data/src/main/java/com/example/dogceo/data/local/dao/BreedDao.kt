@@ -1,9 +1,3 @@
-/*
- * BreedDao.kt
- * Couche : Data · Base locale
- * Rôle : lit et écrit la table des races.
- * TODO: à réécrire
- */
 package com.example.dogceo.data.local.dao
 
 import androidx.room.Dao
@@ -13,29 +7,26 @@ import com.example.dogceo.data.local.entity.BreedEntity
 import kotlinx.coroutines.flow.Flow
 
 /**
- * Accès à la table `breeds` : Room génère le code SQL à la compilation (KSP).
+ * Lecture et écriture de la table `breeds`.
+ * Room génère le SQL à la compilation.
  *
- * TODO: à réécrire
+ * @see BreedEntity
  */
 @Dao
 interface BreedDao {
 
     /**
-     * Suit toutes les races, triées par nom.
+     * Suit toutes les races,triées par nom.
      *
-     * TODO: à réécrire
-     *
-     * @return un [Flow] qui réémet la liste dès que la table change.
+     * @return un [Flow] qui renvoie la liste à chaque changement de la table.
      */
     @Query("SELECT * FROM breeds ORDER BY name")
     fun observeAll(): Flow<List<BreedEntity>>
 
     /**
-     * Insère les races, ou met à jour celles qui existent déjà.
+     * Ajoute les races, ou met à jour celles qui existent déjà
      *
-     * TODO: à réécrire
-     *
-     * @param entities les races téléchargées depuis l'API.
+     * @param entities races à enregistrer.
      */
     @Upsert
     suspend fun upsertAll(entities: List<BreedEntity>)

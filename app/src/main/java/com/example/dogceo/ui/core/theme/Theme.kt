@@ -1,9 +1,3 @@
-/*
- * Theme.kt
- * Couche : UI · Thème
- * Rôle : thème Material de l'app, clair et sombre.
- * TODO: à réécrire
- */
 package com.example.dogceo.ui.core.theme
 
 import android.os.Build
@@ -28,11 +22,17 @@ private val LightColorScheme = lightColorScheme(
     tertiary = Pink40
 )
 
+/**
+ * Applique les couleurs et les textes de l'app à [content].
+ *
+ * @param darkTheme `true` pour le thème sombre, suit le réglage du téléphone par défaut.
+ * @param dynamicColor `true` pour prendre les couleurs du fond d'écran, disponible à partir d'Android 12.
+ * @param content écrans affichés dans le thème.
+ * @see Typography
+ */
 @Composable
 fun DogCeoTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Couleurs tirées du fond d'écran : disponibles à partir d'Android 12
-    // TODO: à réécrire
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {

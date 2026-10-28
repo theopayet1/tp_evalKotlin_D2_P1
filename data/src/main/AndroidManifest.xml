@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Localisation : GpsManagerImpl lit la position, ce module déclare donc ce dont il a besoin.
-         Android fusionne ce manifest avec celui de l'app à la compilation.
-         TODO: à réécrire -->
+    <!-- Localisation : GpsManagerImpl lit la position, donc ce module déclare ses permissions.
+         Android fusionne ce manifest avec celui de l'app. -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 

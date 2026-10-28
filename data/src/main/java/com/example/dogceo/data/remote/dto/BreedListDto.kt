@@ -1,20 +1,13 @@
-/*
- * BreedListDto.kt
- * Couche : Data · Source distante
- * Rôle : forme exacte du JSON des races.
- * TODO: à réécrire
- */
 package com.example.dogceo.data.remote.dto
 
 import kotlinx.serialization.Serializable
 
 /**
- * Réponse brute de `GET breeds/list/all`, telle que l'API Dog CEO l'envoie.
+ * Réponse JSON de `GET breeds/list/all`.
  *
- * TODO: à réécrire
- *
- * @property message chaque clé est une race, sa valeur la liste de ses sous-races (vide si aucune).
- * @property status `"success"` quand l'appel a réussi.
+ * @property message race → sous-races (liste vide s'il n'y en a pas).
+ * @property status `"success"` si l'appel a marché.
+ * @see com.example.dogceo.data.mapper.toEntities
  */
 @Serializable
 data class BreedListDto(

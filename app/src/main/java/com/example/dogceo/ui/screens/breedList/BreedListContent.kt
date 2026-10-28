@@ -1,9 +1,3 @@
-/*
- * BreedListContent.kt
- * Couche : UI · Écran liste des races
- * Rôle : affiche l'écran à partir de l'état, sans ViewModel.
- * TODO: à réécrire
- */
 package com.example.dogceo.ui.screens.breedList
 
 import androidx.compose.foundation.layout.Box
@@ -45,19 +39,13 @@ import com.example.dogceo.ui.core.components.SpinningTiger
 import com.example.dogceo.ui.core.theme.DogCeoTheme
 
 /**
- * Affichage complet de l'écran des races, sans ViewModel : il reçoit l'état et renvoie les actions,
- * ce qui permet de le prévisualiser dans chaque situation.
+ * Affiche l'écran des races avec [state], sans ViewModel pour pouvoir faire des Previews.
  *
- * Ordre de haut en bas : barre de titre (tigre, localisation, rafraîchir), barre de progression pendant
- * un téléchargement, bandeaux d'erreur et de refus si besoin, position, puis la liste (ou un message si
- * elle est vide). Par-dessus tout, le tigre géant quand l'easter egg est déclenché.
- *
- * TODO: à réécrire
- *
- * @param state ce qu'il faut afficher, fourni par [BreedListViewModel].
- * @param onAction appelé à chaque interaction : le composable ne décide rien, il transmet.
- * @param onLocateClick clic sur « Me localiser » : l'écran parent ouvre la popup de permission.
- * @param modifier pour placer l'écran depuis son parent.
+ * @param state état à afficher.
+ * @param onAction envoie les actions de l'utilisateur.
+ * @param onLocateClick clic sur « Me localiser », le parent demande la permission.
+ * @param modifier modificateur de l'écran.
+ * @see BreedListScreen
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -67,8 +55,7 @@ fun BreedListContent(
     onLocateClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    // État purement visuel : pas besoin du ViewModel. rememberSaveable le garde après une rotation
-    // TODO: à réécrire
+    // État juste visuel, rememberSaveable le garde après une rotation
     var isTigerVisible by rememberSaveable { mutableStateOf(false) }
     val tigerDescription = stringResource(R.string.breed_list_tiger)
 
@@ -85,6 +72,7 @@ fun BreedListContent(
                             },
                         ) {
                             Text(
+                                // Easter egg : affiche le tigre
                                 text = stringResource(R.string.tiger_emoji),
                                 fontSize = 22.sp,
                                 modifier = Modifier.semantics { contentDescription = tigerDescription },
@@ -98,8 +86,7 @@ fun BreedListContent(
                         }
                         IconButton(
                             onClick = { onAction(BreedListAction.OnRefreshClick) },
-                            // Évite de relancer un téléchargement déjà en cours
-                            // TODO: à réécrire
+                            // Bouton désactivé pendant un téléchargement, pour ne pas en lancer deux
                             enabled = !state.isLoading,
                         ) {
                             Icon(
@@ -147,8 +134,7 @@ fun BreedListContent(
                     }
                 } else {
                     LazyColumn {
-                        // key : Compose reconnaît chaque race par son nom et ne redessine que celles qui changent
-                        // TODO: à réécrire
+                        // key : Compose redessine seulement les races qui changent
                         items(state.breeds, key = { it.name }) { breed ->
                             BreedItem(breed = breed)
                             HorizontalDivider()
