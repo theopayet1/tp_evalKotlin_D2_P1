@@ -1,0 +1,17 @@
+<resources>
+    <!-- Variante anglaise : utilisée quand le téléphone est réglé en anglais -->
+
+    <!-- Écran liste des races -->
+    <string name="breed_list_title">Dog breeds</string>
+    <string name="breed_list_refresh">Refresh the list</string>
+    <string name="breed_list_error">Could not load the breeds. Check your connection.</string>
+    <string name="breed_list_empty">No breeds yet</string>
+    <string name="breed_list_tiger">Show the tiger</string>
+    <string name="breed_list_locate">Locate me</string>
+    <string name="breed_list_position">📍 Your position: %1$.4f, %2$.4f</string>
+    <string name="breed_list_location_denied">Without location access, your position cannot be shown.</string>
+
+    <!-- Composants partagés -->
+    <string name="error_banner_dismiss">Close</string>
+    <string name="spinning_tiger_close">Close the tiger</string>
+</resources>

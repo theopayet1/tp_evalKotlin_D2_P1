@@ -12,7 +12,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.dogceo.ui.core.theme.DogCeoTheme
 import com.example.dogceo.ui.screens.breedList.BreedListScreen
-import org.koin.androidx.compose.KoinAndroidContext
 
 /**
  * Seule activity de l'app : elle pose le thème et affiche l'écran des races.
@@ -24,12 +23,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            // Relie Compose au Koin démarré dans DogCeoApplication, pour que koinViewModel() le trouve
-            // TODO: à réécrire
-            KoinAndroidContext {
-                DogCeoTheme {
-                    BreedListScreen()
-                }
+            DogCeoTheme {
+                BreedListScreen()
             }
         }
     }

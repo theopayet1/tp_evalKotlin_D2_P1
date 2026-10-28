@@ -7,7 +7,14 @@
     <string name="breed_list_refresh">Rafraîchir la liste</string>
     <string name="breed_list_error">Impossible de charger les races. Vérifie ta connexion.</string>
     <string name="breed_list_empty">Aucune race pour l\'instant</string>
+    <string name="breed_list_tiger">Afficher le tigre</string>
+    <string name="breed_list_locate">Me localiser</string>
+    <string name="breed_list_position">📍 Ta position : %1$.4f, %2$.4f</string>
+    <string name="breed_list_location_denied">Sans la localisation, impossible d\'afficher ta position.</string>
 
     <!-- Composants partagés -->
     <string name="error_banner_dismiss">Fermer</string>
+    <string name="spinning_tiger_close">Fermer le tigre</string>
+    <!-- Émoji : identique dans toutes les langues -->
+    <string name="tiger_emoji" translatable="false">🐯</string>
 </resources>

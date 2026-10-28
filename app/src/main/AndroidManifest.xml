@@ -7,6 +7,13 @@
          TODO: à réécrire -->
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- Localisation : afficher la position de l'utilisateur au clic sur « Me localiser ».
+         Permissions dangereuses : demandées à l'exécution, par une popup.
+         FINE et COARSE ensemble, comme l'exige Android 12+ : l'utilisateur choisit précise ou approximative.
+         TODO: à réécrire -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <!-- L'app : DogCeoApplication démarre Koin avant le premier écran.
          TODO: à réécrire -->
     <application

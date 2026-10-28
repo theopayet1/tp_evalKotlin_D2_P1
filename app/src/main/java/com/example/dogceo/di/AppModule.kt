@@ -8,10 +8,12 @@ package com.example.dogceo.di
 
 import com.example.dogceo.data.local.DogCeoDatabase
 import com.example.dogceo.data.local.createDogCeoDatabase
+import com.example.dogceo.data.manager.GpsManagerImpl
 import com.example.dogceo.data.manager.SoundManagerImpl
 import com.example.dogceo.data.remote.BreedApiService
 import com.example.dogceo.data.remote.createDogCeoHttpClient
 import com.example.dogceo.data.repository.BreedRepositoryImpl
+import com.example.dogceo.domain.manager.GpsManager
 import com.example.dogceo.domain.manager.SoundManager
 import com.example.dogceo.domain.repository.BreedRepository
 import com.example.dogceo.ui.screens.breedList.BreedListViewModel
@@ -48,6 +50,7 @@ val appModule = module {
     // factory : chaque ViewModel a son propre son, qu'il libère dans onCleared() sans couper celui des autres
     // TODO: à réécrire
     factory<SoundManager> { SoundManagerImpl(androidContext()) }
+    single<GpsManager> { GpsManagerImpl(androidContext()) }
     //endregion
 
     //region ViewModels
