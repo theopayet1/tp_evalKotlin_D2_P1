@@ -16,7 +16,7 @@ Projet d'évaluation Kotlin / Android (DIIAGE 2 · P1, sujet libre).
 
 ---
 
-## ✨ Ce que fait l'app
+## Ce que fait l'app
 
 | Fonctionnalité | Détail |
 |---|---|
@@ -28,10 +28,10 @@ Projet d'évaluation Kotlin / Android (DIIAGE 2 · P1, sujet libre).
 | 🌍 **Deux langues** | Français par défaut, anglais si le téléphone est en anglais |
 | 🌙 **Thème clair et sombre** | Suit le réglage du téléphone, avec les couleurs du fond d'écran (Android 12+) |
 
-### 🐯 Le secret magique
+### 🐯 Le secret du grand tigrou
 
 En haut de l'écran, il y a une **tête de tigre**.
-Il se passe quelque chose de **magique** quand on appuie dessus… on ne dit rien de plus, essaie. 🤫
+Appuie dessus stp
 
 ---
 
