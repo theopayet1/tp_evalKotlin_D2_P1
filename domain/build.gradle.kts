@@ -16,3 +16,9 @@ kotlin {
         jvmTarget.set(JvmTarget.JVM_11)
     }
 }
+
+dependencies {
+    // api : Flow apparaît dans les interfaces du Domain, data et app doivent le voir
+    // TODO: à réécrire
+    api(libs.kotlinx.coroutines.core)
+}
