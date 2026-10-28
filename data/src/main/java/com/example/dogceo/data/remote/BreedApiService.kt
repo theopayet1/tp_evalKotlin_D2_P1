@@ -1,3 +1,9 @@
+/*
+ * BreedApiService.kt
+ * Couche : Data · Source distante
+ * Rôle : appelle l'API Dog CEO.
+ * TODO: à réécrire
+ */
 package com.example.dogceo.data.remote
 
 import com.example.dogceo.data.remote.dto.BreedListDto

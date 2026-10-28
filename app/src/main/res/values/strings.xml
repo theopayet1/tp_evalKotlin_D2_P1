@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">dogCeo</string>
+    <!-- Nom de marque : identique dans toutes les langues -->
+    <string name="app_name" translatable="false">dogCeo</string>
+
+    <!-- Écran liste des races -->
+    <string name="breed_list_title">Races de chiens</string>
+    <string name="breed_list_refresh">Rafraîchir la liste</string>
+    <string name="breed_list_error">Impossible de charger les races. Vérifie ta connexion.</string>
+    <string name="breed_list_empty">Aucune race pour l\'instant</string>
+
+    <!-- Composants partagés -->
+    <string name="error_banner_dismiss">Fermer</string>
 </resources>

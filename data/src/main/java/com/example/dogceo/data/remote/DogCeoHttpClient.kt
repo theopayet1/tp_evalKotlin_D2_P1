@@ -1,3 +1,9 @@
+/*
+ * DogCeoHttpClient.kt
+ * Couche : Data · Source distante
+ * Rôle : crée le client Ktor configuré pour l'API.
+ * TODO: à réécrire
+ */
 package com.example.dogceo.data.remote
 
 import io.ktor.client.HttpClient

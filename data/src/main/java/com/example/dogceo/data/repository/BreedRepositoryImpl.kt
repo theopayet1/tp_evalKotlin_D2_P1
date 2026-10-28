@@ -1,3 +1,9 @@
+/*
+ * BreedRepositoryImpl.kt
+ * Couche : Data · Repository
+ * Rôle : fetch offline-first : lit Room, met à jour depuis l'API.
+ * TODO: à réécrire
+ */
 package com.example.dogceo.data.repository
 
 import com.example.dogceo.data.local.dao.BreedDao

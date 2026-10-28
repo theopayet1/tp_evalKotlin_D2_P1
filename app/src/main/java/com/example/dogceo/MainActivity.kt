@@ -1,47 +1,36 @@
+/*
+ * MainActivity.kt
+ * Couche : App · Activity
+ * Rôle : seule activity, affiche l'écran des races dans le thème.
+ * TODO: à réécrire
+ */
 package com.example.dogceo
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.dogceo.ui.core.theme.DogCeoTheme
+import com.example.dogceo.ui.screens.breedList.BreedListScreen
+import org.koin.androidx.compose.KoinAndroidContext
 
+/**
+ * Seule activity de l'app : elle pose le thème et affiche l'écran des races.
+ *
+ * TODO: à réécrire
+ */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            DogCeoTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+            // Relie Compose au Koin démarré dans DogCeoApplication, pour que koinViewModel() le trouve
+            // TODO: à réécrire
+            KoinAndroidContext {
+                DogCeoTheme {
+                    BreedListScreen()
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    DogCeoTheme {
-        Greeting("Android")
     }
 }

@@ -1,3 +1,9 @@
+/*
+ * DogCeoDatabase.kt
+ * Couche : Data · Base locale
+ * Rôle : base Room de l'app et sa fonction de création.
+ * TODO: à réécrire
+ */
 package com.example.dogceo.data.local
 
 import android.content.Context

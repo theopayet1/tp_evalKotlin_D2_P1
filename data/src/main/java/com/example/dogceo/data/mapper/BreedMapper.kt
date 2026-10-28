@@ -1,3 +1,9 @@
+/*
+ * BreedMapper.kt
+ * Couche : Data · Mapper
+ * Rôle : convertit DTO, Entity et modèle du Domain.
+ * TODO: à réécrire
+ */
 package com.example.dogceo.data.mapper
 
 import com.example.dogceo.data.local.entity.BreedEntity

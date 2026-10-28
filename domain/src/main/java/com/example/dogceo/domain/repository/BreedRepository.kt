@@ -1,3 +1,9 @@
+/*
+ * BreedRepository.kt
+ * Couche : Domain · Contrat
+ * Rôle : décrit l'accès aux races, sans savoir d'où elles viennent.
+ * TODO: à réécrire
+ */
 package com.example.dogceo.domain.repository
 
 import com.example.dogceo.domain.model.Breed

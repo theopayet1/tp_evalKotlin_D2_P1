@@ -1,3 +1,9 @@
+/*
+ * BreedListDto.kt
+ * Couche : Data · Source distante
+ * Rôle : forme exacte du JSON des races.
+ * TODO: à réécrire
+ */
 package com.example.dogceo.data.remote.dto
 
 import kotlinx.serialization.Serializable

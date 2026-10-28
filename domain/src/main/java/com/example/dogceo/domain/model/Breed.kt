@@ -1,3 +1,9 @@
+/*
+ * Breed.kt
+ * Couche : Domain · Modèle
+ * Rôle : une race de chien telle que l'app la manipule.
+ * TODO: à réécrire
+ */
 package com.example.dogceo.domain.model
 
 /**

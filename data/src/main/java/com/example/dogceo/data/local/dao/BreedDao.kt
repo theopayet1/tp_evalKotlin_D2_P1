@@ -1,3 +1,9 @@
+/*
+ * BreedDao.kt
+ * Couche : Data · Base locale
+ * Rôle : lit et écrit la table des races.
+ * TODO: à réécrire
+ */
 package com.example.dogceo.data.local.dao
 
 import androidx.room.Dao

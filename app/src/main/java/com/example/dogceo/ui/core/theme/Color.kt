@@ -1,3 +1,9 @@
+/*
+ * Color.kt
+ * Couche : UI · Thème
+ * Rôle : couleurs de base de l'app.
+ * TODO: à réécrire
+ */
 package com.example.dogceo.ui.core.theme
 
 import androidx.compose.ui.graphics.Color

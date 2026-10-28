@@ -1,3 +1,9 @@
+/*
+ * BreedConverters.kt
+ * Couche : Data · Base locale
+ * Rôle : range la liste des sous-races dans une colonne texte.
+ * TODO: à réécrire
+ */
 package com.example.dogceo.data.local
 
 import androidx.room.TypeConverter

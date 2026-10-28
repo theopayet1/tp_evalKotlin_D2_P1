@@ -1,3 +1,9 @@
+/*
+ * BreedEntity.kt
+ * Couche : Data · Base locale
+ * Rôle : une ligne de la table des races.
+ * TODO: à réécrire
+ */
 package com.example.dogceo.data.local.entity
 
 import androidx.room.Entity
